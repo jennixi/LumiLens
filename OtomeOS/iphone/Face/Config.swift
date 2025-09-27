@@ -1,6 +1,6 @@
 enum Config {
     // ⚠️ Hackathon convenience. Don't commit real keys to public repos.
-    // Test
+    
     static let geminiAPIKey = "<YOUR_GEMINI_API_KEY>"
 
     // Privacy flags
