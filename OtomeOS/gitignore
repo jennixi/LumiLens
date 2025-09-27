@@ -1,0 +1,8 @@
+# secrets and configs
+iphone/**/Config.swift
+iphone/Secrets/*
+*.xcconfig
+
+# macOS + Xcode junk
+.DS_Store
+DerivedData/
