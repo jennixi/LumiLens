@@ -2,27 +2,26 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var server = WebServerManager()
+    @State private var showSecrets = false
+
     var body: some View {
         VStack(spacing: 12) {
             Text(server.isRunning ? "Server RUNNING" : "Server STOPPED")
                 .foregroundColor(server.isRunning ? .green : .red)
-            Text("IP: \(server.ip):\(server.port)")
-                .font(.footnote)
-                .foregroundColor(.secondary)
+
             HStack {
                 Button(server.isRunning ? "Stop" : "Start") {
                     server.isRunning ? server.stop() : server.start()
                 }.buttonStyle(.borderedProminent)
-                Button("Clear Log") { server.log.removeAll() }.buttonStyle(.bordered)
+
+                Button("Settings") { showSecrets = true }
+                    .buttonStyle(.bordered)
             }
-            Divider()
+
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: 6) {
-                    ForEach(server.log, id:\.self) { Text($0).font(.footnote).monospaced() }
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                ForEach(server.log, id:\.self) { Text($0).font(.footnote).monospaced() }
             }
         }
-        .padding()
-        .navigationTitle("OtomePhone")
+        .sheet(isPresented: $showSecrets) { SecretsView() }
     }
 }

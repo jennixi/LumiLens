@@ -2,6 +2,7 @@ import Foundation
 import Swifter
 
 final class FaceServer {
+
     func handleEnroll(req: HttpRequest) -> HttpResponse {
         let q = Dictionary(uniqueKeysWithValues: req.queryParams.map { ($0.0, $0.1) })
         guard let name = q["name"], !name.isEmpty else { return .badRequest(nil) }
@@ -16,15 +17,28 @@ final class FaceServer {
         }
     }
 
+    /// Receives a JPEG from the Pi, does local identity matching + Gemini emotion (with fallback).
     func handleRecognize(req: HttpRequest) -> HttpResponse {
         let jpeg = Data(req.body)
         do {
-            let emb = try awaitEmbed(jpeg)
-            if let m = FaceStore.shared.bestMatch(for: emb) {
-                return json(["name": m.name, "note": m.note, "score": m.score])
-            } else {
-                return json(["name":"Unknown","note":"","score":0.0])
+            // 1) Local identity match (Vision embedding + FaceStore)
+            var name = "Unknown", note = "", score: Float = 0
+            if let m = FaceStore.shared.bestMatch(for: try awaitEmbed(jpeg)) {
+                name = m.name; note = m.note; score = m.score
             }
+
+            // 2) Emotion via Gemini (if a key exists), else neutral fallback
+            let emotion: String
+            if let _ = Secret.geminiKey {
+                // If the call fails for any reason, default to neutral so the demo never breaks
+                emotion = (try? await GeminiClient.emotionFromImageJPEG(jpeg)) ?? "neutral"
+            } else {
+                emotion = "neutral"
+            }
+
+            // 3) Return compact JSON for Pi/UI
+            return json(["name": name, "note": note, "score": score, "emotion": emotion])
+
         } catch {
             return json(["error":"\(error)"], code: 500)
         }
