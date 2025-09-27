@@ -1,2 +1,0 @@
-# LumiLens
-kawaii autism assist
