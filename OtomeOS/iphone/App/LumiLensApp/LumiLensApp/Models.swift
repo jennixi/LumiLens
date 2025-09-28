@@ -11,7 +11,7 @@ struct Person: Codable, Identifiable, Equatable {
 
 struct AppSettings: Codable {
     var piIP: String = ""                // e.g., "172.20.10.5"
-    var geminiAPIKey: String = "AlzaSyC_zV-_JmsAwwznlGqV8YVGUALN9PmREbo"        // "YOUR_GEMINI_API_KEY"
+    var geminiAPIKey: String = ""        // "YOUR_GEMINI_API_KEY"
     var similarityThreshold: Double = 0.45
 }
 
