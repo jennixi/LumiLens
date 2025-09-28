@@ -1,0 +1,14 @@
+sudo apt update
+sudo apt install -y python3-pip python3-dev libatlas-base-dev libopenjp2-7 libtiff5
+pip3 install flask pillow numpy opencv-python deepface
+# Optional GPIO if you have a button wired
+pip3 install RPi.GPIO
+
+sudo mkdir -p /app/images/progress /app/runtime
+# copy your PNGs:
+sudo cp 0.png 25.png 50.png 75.png 100.png /app/images/progress/
+# copy main.py (and emotion.py if using) into /app
+sudo cp main.py /app/main.py
+sudo cp emotion.py /app/emotion.py  # optional, if you have it
+
+python3 /app/main.py
