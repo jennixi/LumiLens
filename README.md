@@ -1,9 +1,3 @@
-WADDUPPPPPPP SOOOOOOooOOOOO heres the TLDR of our Lumi Lens glasses! Created by our team Otome OS! >w<
-
-
-
-
-
-
+lumi lens is a project that combines hardware with software and ai to help assist those who struggle socially in everyday conversation. It uses facial emotional recognition which prompts an AI 
 
 
