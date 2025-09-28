@@ -1,0 +1,7 @@
+# run facial recognition test
+
+cd ~/Facial-Emotion-Recognition-with-OpenCV-and-Deepface
+
+source .venv/bin/activate
+
+python emotion.py
