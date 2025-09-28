@@ -1,3 +1,4 @@
+#include <stdint.h> 
 #include <pigpio.h>
 #include <stdlib.h>
 #include "proto.h"
