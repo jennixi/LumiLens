@@ -1,3 +1,14 @@
+
+## Third-Party Code
+
+This project includes a modified copy of  
+[Facial-Emotion-Recognition-with-OpenCV-and-Deepface](https://github.com/serengil/Facial-Emotion-Recognition-with-OpenCV-and-Deepface),  
+originally created by [serengil](https://github.com/serengil).  
+
+- License: MIT (see `external/Facial-Emotion-Recognition-with-OpenCV-and-Deepface/LICENSE`)  
+- Local modifications: adapted code for project integration (e.g. [list your changes briefly, like UI output, removed heart meter, etc.])  
+- Location in repo: `external/Facial-Emotion-Recognition-with-OpenCV-and-Deepface/`  
+
 # Real-time Facial Emotion Recognition using OpenCV and Deepface
 ![B7A63B4C-78C4-41B5-8C70-0302CAF84C6D_1_105_c](https://github.com/ajitharunai/Facial-Emotion-Recognition-with-OpenCV-and-Deepface/assets/89124776/0147d40a-43a1-4f65-9747-bca0d7456310)
 
